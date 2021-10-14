@@ -1,50 +1,118 @@
-import React,{useEffect , useState} from 'react';
+import React,{useState, useCallback,useEffect} from 'react';
+import {useHistory ,Link , BrowserRouter} from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import DropdownMenu from "react-overlays/esm/DropdownMenu";
+import 'bootstrap/dist/css/bootstrap.css';
+import { Button } from 'reactstrap';
+import {  faBars ,faSearch } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { useSelector } from 'react-redux';
+import './searchheader.css';
+import './searchresult.css';
 
 
 
+ /// over all search area function
 function SearchMovies() {
-   const keyword = useSelector(state =>  state.keyword);
-
-   const[ searchUrl, setSearchUrl] = useState({});
+   const [omdbResult , setOmdbResult] = useState({});
+   const [searchWord, setSearchWord] = useState('');
+   const history = useHistory();
   
-   console.log("search url is ",searchUrl)
-    
-  const options = {
-    method: 'GET',
-    url: 'https://imdb8.p.rapidapi.com/title/find',
-    params: {q: keyword ? keyword : 'the dark knight'},
-    headers: {
-      'x-rapidapi-host': 'imdb8.p.rapidapi.com',
-      'x-rapidapi-key': 'e497470d92msh184116dd7f558c4p19f4a6jsn1d39b63a73c0'
-    }
-  } 
-  
+   console.log("search result is ",searchWord);
 
-const  fetchMovie  = () => {
-axios.request(options).then(function (response) {
-	setSearchUrl(response.data.results[0].image)
-  console.log("checking is :",response.data)
-}).catch(function (error) {
-	console.error(error);
-});
-}
+   
 
- useEffect(() =>{
+   useEffect(() =>{
     fetchMovie();
  },[])
 
+ 
+
+  const changeHandler = (e)  => {
+     setSearchWord(e.target.value)
+     console.log("value is:",e.target.value);
+   
+  }
+
+  const submitHandler = (event)=> {
+    event.preventDefault(); 
   
+   fetchMovie();
+
+  }
+  
+  const redirectHome = useCallback(() =>{
+    history.push('/')
+  })
+ 
+ 
+  
+
+const  fetchMovie  = () => {
+ 
+axios.request(`http://www.omdbapi.com/?apikey=18ea989d&t=${searchWord ? searchWord : 'the dark knight'}`).then((response) =>{
+  console.log("omdb checking :",response.data);
+  setOmdbResult(response.data)
+}).catch((error) => {
+	console.error(error);
+});
+
+}
+
+
+
+
     return (
-        <div>
-          <h1>Searched movies</h1>
-          <h1>search keyword is : {keyword}</h1>
-          <div>
-          <h2>{searchUrl.url ? '' : 'Loading please wait....'}</h2>
-            <img src={searchUrl.url} ></img>
-          </div>
+        <>
+         <div className="heading-area ">
+          <div className="imdb-logo " onClick={redirectHome}>IMDB Data</div>
+           <form className="form_search_control ">
+           <input type="text" 
+             placeholder="Movie, Webseries, Actor, Actress, Drama"
+                   className="search_bar" 
+                   value={searchWord}
+                   onChange={changeHandler}
+                   /> 
+     <button  className="btn search_btn" type="submit" onClick={submitHandler}> 
+              <FontAwesomeIcon icon={faSearch} 
+              // onClick={submitHandler}
+                className="search_btn_icon"/>
+               </button> 
+            </form>      
+            <div className="menu_container" >
+            <FontAwesomeIcon icon={faBars} className="menu_bar_icon" />
+         <Button className="btn btn-primary btn-sm m-2 menu_btn ">menu</Button>    
+           </div>  
+      </div>
+          
+   <div className="search_result_container">
+   <div className="img_container">
+        <h2 className="result_title">{omdbResult.Title} </h2>
+        <img src={omdbResult.Poster} alt={omdbResult.Title} 
+        className="result_image"></img> 
+        <div className="img_des"> 
+         <div style={{display:'flex',justifyContent:'space-between'}}>
+        <span>{omdbResult.Year}</span>
+         <span>Rated: {omdbResult.Rated}</span>  
+         </div>
+         <div>
+           {omdbResult.Genre}
+         </div>
         </div>
+     </div>
+     <div className="detail_container">
+       <p><sapn className="detail_label">Director: </sapn>{omdbResult.Director}</p>
+       <p><sapn className="detail_label">Release Date: </sapn>{omdbResult.Released}</p>
+       <p><sapn className="detail_label">Actor: </sapn>{omdbResult.Actors}</p>
+       <p><sapn className="detail_label">Writer: </sapn>{omdbResult.Writer}</p>
+       <p><sapn className="detail_label">Awards: </sapn>{omdbResult.Awards}</p>
+       <p><sapn className="detail_label">Box Office: </sapn>{omdbResult.BoxOffice}</p>
+       <p><sapn className="detail_label">Writer: </sapn>{omdbResult.Writer}</p>
+       <p>{omdbResult.Plot}</p>
+    </div>
+
+
+   </div>    
+        </>
     )
 }
 

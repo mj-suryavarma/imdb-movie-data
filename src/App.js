@@ -1,26 +1,20 @@
 import React,{useState} from 'react';
 import './App.css';
-import Heading from './header/header';
+import 'bootstrap/dist/css/bootstrap.css'; 
 import Body from './body/body'; 
 import {BrowserRouter} from 'react-router-dom';
-
+import Footer from './footer/footer';
 function App() {
 
-  const [searchWord , setSerachWord] = useState('');
 
 
   return (
 
     <BrowserRouter>
     <div className="App"> 
-   <Heading />
-
    <Body />
-
-   {/* footer  */}
-   
-    </div>
- 
+  {/* <Footer /> */}
+    </div> 
     </BrowserRouter>
   );
 }

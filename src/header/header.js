@@ -6,7 +6,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import DropdownMenu from "react-overlays/esm/DropdownMenu";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button } from 'reactstrap';
-import {  faBars ,faSearch } from "@fortawesome/free-solid-svg-icons";
+import {  faBars ,faSearch,faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import {searchKeyword} from '../Action/index';
 import {  useDispatch } from "react-redux";
 
@@ -14,7 +14,7 @@ import {  useDispatch } from "react-redux";
 
 
 function HeadingArea () {
-  const [keyword , setKeyword] = useState('indian');
+  const [keyword , setKeyword] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -23,11 +23,9 @@ function HeadingArea () {
       setKeyword(e.target.value);
 
     }
-    const submitHandler = (e)=> {
-       e.preventDefault();
-        dispatch(searchKeyword(keyword));
-        console.log("dispatch is ",dispatch);
-    }
+
+    
+     
     const redirect = useCallback(() => {
       history.push('/find')
 
@@ -36,26 +34,21 @@ function HeadingArea () {
       history.push('/')
     })
     console.log("current page is :",window.location.href)
-    
+    console.log("keyword is :",keyword)
  
     return(
         <div className="heading-area ">
-            <div className="imdb-logo ">IMDB Data</div>
+            <div className="imdb-logo " onClick={redirectHome}>IMDB Data</div>
              <form className="form_search_control ">
              <input type="text" 
-               placeholder="Movie, Webseries, Actor, Actress, Drama"
+               placeholder="Search for movie click here &#128073;"
                      className="search_bar" 
                      value={keyword}
                      onChange={changeHandler}
                      /> 
-       <button  className="btn search_btn" type="submit" onClick={()=> {
-         
-         redirect();  
-         submitHandler(); 
-         
-         }}> 
-                <FontAwesomeIcon icon={faSearch} 
-                // onClick={submitHandler}
+       <button  className="btn search_btn" type="submit" onClick={redirect}> 
+                <FontAwesomeIcon icon={faArrowRight} 
+                onClick={redirect}
                   className="search_btn_icon"/>
                  </button> 
                   

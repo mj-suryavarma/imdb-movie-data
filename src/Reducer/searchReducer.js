@@ -1,5 +1,5 @@
 const initState = {
-    searchWord : ''
+    searchWord : 'indian'
 }
 
 

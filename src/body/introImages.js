@@ -17,14 +17,6 @@ function IntroImages() {
     return (
         <div className="container mt-5">
 
-<BrowserRouter>         
-             <Link  to="/find"  className="btn search_btn"
-             
-             >  clickme
-
-                 </Link>  
-                 </BrowserRouter>  
-
   <Carousel className="carousel_container  ">
       <Carousel.Item className="carousel-item">
           <img src={noTimeToDieImage} 
