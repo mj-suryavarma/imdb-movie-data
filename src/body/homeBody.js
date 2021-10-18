@@ -9,6 +9,8 @@ import './homebody.css';
 import 'bootstrap/dist/css/bootstrap.css'; 
 import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
+import HorrorMovies from './horrormovies/horrormovies';
+import DramaMovies from './dramamovies/dramamovies';
 
 
 function HomeBody() {
@@ -23,8 +25,7 @@ function HomeBody() {
  <div className="home_page_body">
 <IntroImages />
 <TopRatedMovies />
-<Popular />
-
+<ActionMovie/>
 {/* load more using bootstrap collapse */}
 <div className="collapse_button text-center"> 
 <Button 
@@ -42,8 +43,11 @@ style={{
 </div>
   <Collapse in={isOpen}>
     <div id="collapseID">
-<ActionMovie/>
+      
+<DramaMovies />
+<Popular />
 <RomanceMovie />
+<HorrorMovies />
     </div>
   </Collapse>
    </div> 

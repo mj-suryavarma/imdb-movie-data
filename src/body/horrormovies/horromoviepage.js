@@ -4,13 +4,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { faStar  } from '@fortawesome/free-solid-svg-icons';
 import '../popularMovies/popularpage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { RomanceMovieDatabase } from './romancemoviedatabase';
+import { HorrorMovieDatabase } from './horrormoivedatabase';
 
-function RomancePage() {
+function HorrorMoviesPage() {
     
-    const displayAllMovies = () =>{
-        return RomanceMovieDatabase.map((data)=>{
-            return <div className="pp_items" key={data.imdbID}>
+    const displayAllPopularMovies = () =>{
+        return HorrorMovieDatabase.map((data)=>{
+            return <div className="pp_items">
                 <div className="pp_img_container">
                 <h3 className="pp_title">{data.Title}({data.Year})</h3>
                 <img src={data.Poster} alt={data.Title} className="pp_img" />
@@ -35,13 +35,13 @@ function RomancePage() {
         <div>
             <HeadingArea />
             <div className="pp_full_container ">
-            <h1 className="pp_page_title ">Top Best Romance Movies From IMDB</h1>
+            <h1 className="pp_page_title ">Top Horror Movies From IMDB</h1>
             <div className="pp_all_container container">
-                {displayAllMovies()}
+                {displayAllPopularMovies()}
             </div>
             </div>
         </div>
     )
 }
 
-export default RomancePage;
+export default HorrorMoviesPage;

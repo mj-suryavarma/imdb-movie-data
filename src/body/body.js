@@ -6,8 +6,8 @@ import SearchMovies from './searchItem/searchMovies';
 import topratedpage from './topratedmovies/topratedpage';
 import ActionPage from './actionmovies/actionpage';
 import RomancePage from './romance/romancepage';
-
-
+import HorrorMoviesPage from './horrormovies/horromoviepage';
+import DramaPage from './dramamovies/dramamoviespage';
 
 function body() {
     return (
@@ -19,6 +19,8 @@ function body() {
         <Route  path='/top-rated-movies' component={topratedpage}/>
         <Route  path='/action-movies' component={ActionPage}/>
         <Route  path='/romance-movies' component={RomancePage}/>
+        <Route  path='/drama-movies' component={DramaPage}/>
+        <Route  path='/horror-movies' component={HorrorMoviesPage}/>
         </Switch>
             
     </BrowserRouter>

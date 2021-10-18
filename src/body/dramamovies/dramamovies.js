@@ -3,23 +3,22 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useHistory } from 'react-router';
-import { ActionMovieDatabase } from './actionmoviedatabase';
+import { DramaMoviesDatabase } from './dramamoviesdatabase';
 
-
-function Actionmovie() {
+function DramaMovies() {
  
 
     const history = useHistory();
 
     const ClickHandler = ()=>{
-       history.push('/action-movies');
+       history.push('/drama-movies');
        window.scrollTo({
         top:0
       });
     };
    
    const displayPopularMovies = () =>{
-     return ActionMovieDatabase.map((data)=> {
+     return DramaMoviesDatabase.map((data)=> {
        return <div key={data.imdbID} className="popular_movie_item">
          <img src={data.Poster} alt={data.Title} className="popular_movie_image"></img>
          <p className="movie_rating_con"><div>{data.imdbRating}</div> <div>{data.imdbVotes}</div> </p>
@@ -32,7 +31,7 @@ function Actionmovie() {
   
       <div className="popular_heading_container">
         <h2>
-        Action movies
+        Best Drama movies
         </h2>
          <div className="popular_seeMore" >
            See More 
@@ -50,4 +49,4 @@ function Actionmovie() {
   
 };
 
-export default Actionmovie;
+export default DramaMovies;

@@ -1,0 +1,17 @@
+.modal_full_container{
+    width: 80%;
+}
+
+.modal_body{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.modal_social_media{
+    margin-top: 15px;
+    font-size: 1.7rem;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-evenly;
+   
+}
+
