@@ -1,35 +1,31 @@
 import React, {useState, useCallback} from "react";
-import ReactDom from 'react-dom';
 import {useHistory ,Link , BrowserRouter} from 'react-router-dom';
 import './header.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import DropdownMenu from "react-overlays/esm/DropdownMenu";
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button } from 'reactstrap';
-import {  faBars ,faSearch,faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import {searchKeyword} from '../Action/index';
-import {  useDispatch } from "react-redux";
-
-
+import { Button ,Dropdown,DropdownToggle,DropdownMenu,DropdownItem} from 'reactstrap';
+// import Dropdown from 'react-bootstrap'
+import {  faBars ,faSearch,faArrowRight, faAddressCard } from "@fortawesome/free-solid-svg-icons";
+import Modal from 'react-bootstrap/Modal'
+import MenuContainer from "../menucontainer";
 
 
 function HeadingArea () {
   const [keyword , setKeyword] = useState('');
-  const dispatch = useDispatch();
   const history = useHistory();
-
+  
 
     const changeHandler = (e)  => {
       setKeyword(e.target.value);
 
     }
 
-    
      
-    const redirect = useCallback(() => {
-      history.push('/find')
+     const redirect = useCallback(() => {
+      history.push('/find');
+      
 
-    })
+    });
     const redirectHome = useCallback(() =>{
       history.push('/')
     })
@@ -38,7 +34,7 @@ function HeadingArea () {
  
     return(
         <div className="heading-area ">
-            <div className="imdb-logo " onClick={redirectHome}>IMDB Data</div>
+            <div className="imdb-logo " onClick={redirectHome}>MOVIE Data</div>
              <form className="form_search_control ">
              <input type="text" 
                placeholder="Search for movie click here &#128073;"
@@ -53,11 +49,9 @@ function HeadingArea () {
                  </button> 
                   
               </form>      
-              <div className="menu_container" >
-              <FontAwesomeIcon icon={faBars} className="menu_bar_icon" />
-           <Button className="btn btn-primary btn-sm m-2 menu_btn ">menu</Button>    
-             </div>  
- 
+              <>
+              {MenuContainer()}
+              </>
 
         </div>
     )

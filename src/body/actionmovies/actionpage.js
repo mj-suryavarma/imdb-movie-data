@@ -1,16 +1,17 @@
 import React from 'react';
 import HeadingArea from '../../header/header';
-import { popularMovieDataBase } from './popularDatabase';
 import 'bootstrap/dist/css/bootstrap.css'; 
 import { faStar  } from '@fortawesome/free-solid-svg-icons';
-import './popularpage.css';
+import '../popularMovies/popularpage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ActionMovieDatabase } from './actionmoviedatabase';
 
-function popularpage() {
+
+function ActionPage() {
     
-    const displayAllPopularMovies = () =>{
-        return popularMovieDataBase.map((data)=>{
-            return <div className="pp_items">
+    const displayAllMovies = () =>{
+        return ActionMovieDatabase.map((data)=>{
+            return <div className="pp_items" key={data.imdbID}>
                 <div className="pp_img_container">
                 <h3 className="pp_title">{data.Title}({data.Year})</h3>
                 <img src={data.Poster} alt={data.Title} className="pp_img" />
@@ -35,13 +36,13 @@ function popularpage() {
         <div>
             <HeadingArea />
             <div className="pp_full_container ">
-            <h1 className="pp_page_title ">Top 10 Popular Movies From IMDB</h1>
+            <h1 className="pp_page_title ">Top Action Movies From IMDB</h1>
             <div className="pp_all_container container">
-                {displayAllPopularMovies()}
+                {displayAllMovies()}
             </div>
             </div>
         </div>
     )
 }
 
-export default popularpage
+export default ActionPage;

@@ -1,0 +1,10 @@
+.home_page_body{
+    background-color: rgb(12, 12, 12);
+    color: whitesmoke;
+}
+.collapse_button{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     padding-bottom: 20px;
+}

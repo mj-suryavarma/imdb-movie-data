@@ -6,8 +6,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Button } from 'reactstrap';
 import {  faBars ,faSearch } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import './searchheader.css';
 import './searchresult.css';
+import '../../header/header.css'
+import MenuContainer from '../../menucontainer';
 
 
 
@@ -17,7 +18,7 @@ function SearchMovies() {
    const [searchWord, setSearchWord] = useState('');
    const history = useHistory();
   
-   console.log("search result is ",searchWord);
+   
 
    
 
@@ -29,7 +30,6 @@ function SearchMovies() {
 
   const changeHandler = (e)  => {
      setSearchWord(e.target.value)
-     console.log("value is:",e.target.value);
    
   }
 
@@ -49,25 +49,35 @@ function SearchMovies() {
 
 const  fetchMovie  = () => {
  
-axios.request(`http://www.omdbapi.com/?apikey=18ea989d&t=${searchWord ? searchWord : 'the dark knight'}`).then((response) =>{
-  console.log("omdb checking :",response.data);
+axios.request(`http://www.omdbapi.com/?apikey=18ea989d&t=${searchWord}`).then((response) =>{
   setOmdbResult(response.data)
+
 }).catch((error) => {
 	console.error(error);
 });
 
 }
 
+const errorContainer= () =>{
+    
+  return(
+<div className="error_container">
+<h3 className="error_title">Invalid searchkey word ... .. .</h3>
+<p className="error_info">If you want to search movies, input the correct movie name on the search bar and click the search icon. </p>
+</div>
+  )
+} 
 
 
+ 
 
     return (
         <>
          <div className="heading-area ">
-          <div className="imdb-logo " onClick={redirectHome}>IMDB Data</div>
+          <div className="imdb-logo " onClick={redirectHome}>MOVIE Data</div>
            <form className="form_search_control ">
            <input type="text" 
-             placeholder="Movie, Webseries, Actor, Actress, Drama"
+             placeholder="Search Movie here"
                    className="search_bar" 
                    value={searchWord}
                    onChange={changeHandler}
@@ -78,14 +88,22 @@ axios.request(`http://www.omdbapi.com/?apikey=18ea989d&t=${searchWord ? searchWo
                 className="search_btn_icon"/>
                </button> 
             </form>      
-            <div className="menu_container" >
-            <FontAwesomeIcon icon={faBars} className="menu_bar_icon" />
-         <Button className="btn btn-primary btn-sm m-2 menu_btn ">menu</Button>    
-           </div>  
+            <>
+            {MenuContainer()}
+            </>
       </div>
           
    <div className="search_result_container">
-   <div className="img_container">
+  { omdbResult.Response ==="False" ?  
+  /// without search keyword 
+   <div>
+
+     {errorContainer()}
+   </div> 
+  :
+  /// within search keyword
+  <>    
+     <div className="img_container">
         <h2 className="result_title">{omdbResult.Title} </h2>
         <img src={omdbResult.Poster} alt={omdbResult.Title} 
         className="result_image"></img> 
@@ -109,6 +127,7 @@ axios.request(`http://www.omdbapi.com/?apikey=18ea989d&t=${searchWord ? searchWo
        <p><sapn className="detail_label">Writer: </sapn>{omdbResult.Writer}</p>
        <p>{omdbResult.Plot}</p>
     </div>
+    </> }
 
 
    </div>    

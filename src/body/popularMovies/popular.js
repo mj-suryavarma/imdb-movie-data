@@ -3,7 +3,7 @@ import reactDom from 'react-dom';
 import './popular.css';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.css'; 
-import { faDivide, faArrowRight,faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
 import { popularMovieDataBase } from './popularDatabase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useHistory } from 'react-router';
@@ -14,8 +14,11 @@ function Popular() {
   const history = useHistory();
 
   const ClickHandler = ()=>{
-     history.push('/popular-movies')
-  }
+     history.push('/popular-movies');
+     window.scrollTo({
+      top:0
+    });
+  };
  
  const displayPopularMovies = () =>{
    return popularMovieDataBase.map((data)=> {
@@ -24,7 +27,7 @@ function Popular() {
        <p className="movie_rating_con"><div>{data.imdbRating}</div> <div>{data.imdbVotes}</div> </p>
      </div>
    })
-  }
+  };
 
 return(
   <div className="popular_container"> 
@@ -45,7 +48,7 @@ return(
     </div>
     </div>
   </div>
-)
+);
      
-} 
-export default Popular
+} ;
+export default Popular;

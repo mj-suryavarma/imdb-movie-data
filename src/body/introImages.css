@@ -7,6 +7,9 @@
     height: 100%;
     box-shadow: 10px 10px 10px black;
 }
+.intro_image_container{
+    padding-top: 40px;
+}
 .carousel_caption{
     margin: 0;
     font-size: 2rem;

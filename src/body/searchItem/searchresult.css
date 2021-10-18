@@ -1,11 +1,28 @@
 .search_result_container{
     margin: 0;
     display: flex;
+    padding-bottom: 30px;
+    min-height:600px ;
     flex-direction: row;
     justify-content: space-evenly;
-    background-color: rgb(7, 7, 7);
+    background-color: rgb(10, 10, 10);
     color: whitesmoke;
 }
+
+.error_container{
+    margin-top: 150px;
+    padding: 20px;
+    text-align: center;
+    color: skyblue;
+}
+.error_title{
+    font-size: 2rem;
+    font-weight: 700;
+}
+.error_info{
+    font-size: 1.2rem;
+}
+
 .img_container{
     margin-left: 30px;
     margin-right: 10px;
@@ -54,6 +71,12 @@
     .result_image{
        max-width: 300px;
        max-height: 400px;
+   }
+   .error_container{
+       margin-top: 60px;
+   }
+   .error_title{
+       font-size: 1.5rem;
    }
 
 }

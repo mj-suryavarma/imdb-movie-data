@@ -3,19 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import allReducers from './Reducer';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+ 
 
 
-const   storeData = createStore(allReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
 
 ReactDOM.render(
-  <Provider store={storeData}>
+  <div>
     <App />
-  </Provider>,
+  </div>,
   document.getElementById('root')
 );
 

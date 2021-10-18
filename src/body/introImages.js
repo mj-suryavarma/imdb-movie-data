@@ -15,7 +15,7 @@ import './introImages.css'
 function IntroImages() {
    
     return (
-        <div className="container mt-5">
+        <div className="container intro_image_container">
 
   <Carousel className="carousel_container  ">
       <Carousel.Item className="carousel-item">

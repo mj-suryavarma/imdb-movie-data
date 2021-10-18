@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import './App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'bootstrap/dist/css/bootstrap.css'; 
 import Body from './body/body'; 
 import {BrowserRouter} from 'react-router-dom';
@@ -13,7 +14,7 @@ function App() {
     <BrowserRouter>
     <div className="App"> 
    <Body />
-  {/* <Footer /> */}
+  <Footer />
     </div> 
     </BrowserRouter>
   );
