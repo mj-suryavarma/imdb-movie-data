@@ -56,6 +56,8 @@ axios.request(`http://www.omdbapi.com/?apikey=18ea989d&t=${searchWord}`).then((r
 	console.error(error);
 });
 
+ 
+
 }
 
 const errorContainer= () =>{
