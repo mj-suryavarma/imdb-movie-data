@@ -2,7 +2,7 @@ import React, {useState, useCallback} from "react";
 import {useHistory ,Link , BrowserRouter} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button ,Dropdown,DropdownToggle,DropdownMenu,DropdownItem } from 'reactstrap';
+import { Button ,Dropdown,DropdownToggle,DropdownMenu,DropdownItem, Tooltip } from 'reactstrap';
 // import Dropdown from 'react-bootstrap'
 import {  faBars ,faSearch,faArrowRight, faAddressCard } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faGithubSquare, faLinkedin, faStackOverflow,  faTwitterSquare } from "@fortawesome/free-brands-svg-icons";
@@ -18,6 +18,8 @@ function MenuContainer() {
     const [isOpen, setIsOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const history = useHistory();
+    const [openTooltip2, setOpenTooltip2] = useState(false);
+    const [openTooltip1, setOpenTooltip1] = useState(false);
     
     const toggle = () => setDropdownOpen(prevState => !prevState);
   
@@ -32,8 +34,11 @@ function MenuContainer() {
 
     return (
         <div className="menu_container" >
+          <Tooltip target="menuIcon" isOpen={openTooltip1} toggle={()=> setOpenTooltip1(!openTooltip1)}>
+            menu
+          </Tooltip>
             <Dropdown isOpen={dropdownOpen} toggle={toggle} >
-            <DropdownToggle caret className="menu_bar_icon">
+            <DropdownToggle caret className="menu_bar_icon" id="menuIcon">
               menu
              </DropdownToggle>
             <DropdownMenu right >
@@ -74,7 +79,7 @@ function MenuContainer() {
 
            <Modal.Body className="modal_body"> 
            <p>
-            Hi! I'm MJS. I'm a create Front-end developer and a freelancer.if you like to work with me please contact me.
+            Hi! I'm MJS. I'm a creative Front-end developer and a freelancer. If you like to work with me please contact me.
 
            </p>
            <p>
@@ -107,7 +112,12 @@ function MenuContainer() {
              <Button className="btn" onClick={handleClose}>close</Button>
            </Modal.Footer>
           </Modal>
-          <FontAwesomeIcon icon={faAddressCard} className="address_card" onClick={handleOpen} />
+
+          {/* contact card using modal */}
+          <FontAwesomeIcon icon={faAddressCard} className="address_card" id="contactCardIcon" onClick={handleOpen} />
+          <Tooltip isOpen={openTooltip2} target="contactCardIcon" toggle={() => setOpenTooltip2(!openTooltip2)}>
+            contact
+            </Tooltip>      
    </div>
     )
 }

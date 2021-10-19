@@ -3,17 +3,18 @@ import {useHistory ,Link , BrowserRouter} from 'react-router-dom';
 import './header.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button ,Dropdown,DropdownToggle,DropdownMenu,DropdownItem} from 'reactstrap';
+import {Tooltip} from 'reactstrap';
 // import Dropdown from 'react-bootstrap'
 import {  faBars ,faSearch,faArrowRight, faAddressCard } from "@fortawesome/free-solid-svg-icons";
 import Modal from 'react-bootstrap/Modal'
 import MenuContainer from "../menucontainer";
+ 
 
 
 function HeadingArea () {
   const [keyword , setKeyword] = useState('');
   const history = useHistory();
-  
+  const [tooltipOpen , setTooltipOpen] = useState(false);
 
     const changeHandler = (e)  => {
       setKeyword(e.target.value);
@@ -29,9 +30,7 @@ function HeadingArea () {
     const redirectHome = useCallback(() =>{
       history.push('/')
     })
-    console.log("current page is :",window.location.href)
-    console.log("keyword is :",keyword)
- 
+  
     return(
         <div className="heading-area ">
             <div className="imdb-logo " onClick={redirectHome}>MOVIE Data</div>
@@ -41,7 +40,11 @@ function HeadingArea () {
                      className="search_bar" 
                      value={keyword}
                      onChange={changeHandler}
+                     id="searchSuggestion"
                      /> 
+             <Tooltip isOpen={tooltipOpen} toggle={() => setTooltipOpen(!tooltipOpen)} target="searchSuggestion"> 
+                 click right arrow button 
+               </Tooltip>        
        <button  className="btn search_btn" type="submit" onClick={redirect}> 
                 <FontAwesomeIcon icon={faArrowRight} 
                 onClick={redirect}
