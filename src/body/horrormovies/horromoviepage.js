@@ -10,7 +10,7 @@ function HorrorMoviesPage() {
     
     const displayAllPopularMovies = () =>{
         return HorrorMovieDatabase.map((data)=>{
-            return <div className="pp_items">
+            return <div className="pp_items" data-aos="fade-left">
                 <div className="pp_img_container">
                 <h3 className="pp_title">{data.Title}({data.Year})</h3>
                 <img src={data.Poster} alt={data.Title} className="pp_img" />

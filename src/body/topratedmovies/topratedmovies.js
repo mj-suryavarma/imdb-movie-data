@@ -30,7 +30,7 @@ function TopRatedMovies(){
     }
 
     return(
-        <div className="topRated_container"> 
+        <div className="topRated_container"  > 
       
           <div className="topRated_heading_container">
             <h2>

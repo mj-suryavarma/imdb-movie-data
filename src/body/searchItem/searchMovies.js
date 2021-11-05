@@ -64,7 +64,7 @@ const errorContainer= () =>{
     
   return(
 <div className="error_container">
-<h3 className="error_title">Invalid searchkey word ... .. .</h3>
+<h3 className="error_title">Invalid search keyword ... .. .</h3>
 <p className="error_info">If you want to search movies, input the correct movie name on the search bar and click the search icon. </p>
 </div>
   )
@@ -105,11 +105,11 @@ const errorContainer= () =>{
   :
   /// within search keyword
   <>    
-     <div className="img_container">
+     <div className="img_container"data-aos="fade-left">
         <h2 className="result_title">{omdbResult.Title} </h2>
         <img src={omdbResult.Poster} alt={omdbResult.Title} 
-        className="result_image"></img> 
-        <div className="img_des"> 
+        className="result_image" data-aos="fade-left"></img> 
+        <div className="img_des" data-aos="fade-left"> 
          <div style={{display:'flex',justifyContent:'space-between'}}>
         <span>{omdbResult.Year}</span>
          <span>Rated: {omdbResult.Rated}</span>  
@@ -119,7 +119,7 @@ const errorContainer= () =>{
          </div>
         </div>
      </div>
-     <div className="detail_container">
+     <div className="detail_container" data-aos="fade-left">
        <p><sapn className="detail_label">Director: </sapn>{omdbResult.Director}</p>
        <p><sapn className="detail_label">Release Date: </sapn>{omdbResult.Released}</p>
        <p><sapn className="detail_label">Actor: </sapn>{omdbResult.Actors}</p>

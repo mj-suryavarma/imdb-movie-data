@@ -73,7 +73,7 @@ function MenuContainer() {
             </Dropdown>
 
           <Modal show={isOpen} onHide={handleClose} closeButton >
-           <Modal.Header closeButton>
+           <Modal.Header closeButton >
              <h2> Welcome My Friend!..</h2>
            </Modal.Header>
 

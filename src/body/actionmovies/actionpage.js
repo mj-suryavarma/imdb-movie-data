@@ -11,7 +11,7 @@ function ActionPage() {
     
     const displayAllMovies = () =>{
         return ActionMovieDatabase.map((data)=>{
-            return <div className="pp_items" key={data.imdbID}>
+            return <div className="pp_items" key={data.imdbID} data-aos="fade-right">
                 <div className="pp_img_container">
                 <h3 className="pp_title">{data.Title}({data.Year})</h3>
                 <img src={data.Poster} alt={data.Title} className="pp_img" />

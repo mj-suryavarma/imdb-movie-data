@@ -11,7 +11,7 @@ function topratedpage() {
 
     const displayAllPopularMovies = () =>{
         return TopRatedMoviesDatabase.map((data)=>{
-            return <div className="tp_items">
+            return <div className="tp_items" data-aos="fade-left">
                 <div className="tp_img_container">
                 <h3 className="tp_title">{data.Title}({data.Year})</h3>
                 <img src={data.Poster} alt={data.Title} className="tp_img" />
